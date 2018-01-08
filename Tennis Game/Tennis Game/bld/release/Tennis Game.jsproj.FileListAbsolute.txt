@@ -1,0 +1,17 @@
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bin\Release\ReverseMap\resources.pri
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bin\Release\AppxManifest.xml
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bin\Release\Tennis Game.build.appxrecipe
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\Tennis Game.jsproj.CoreCompileInputs.cache
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\ResourceHandlingTask.state
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\priconfig.xml
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\priconfig.xml.intermediate
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\layout.resfiles
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\layout.resfiles.intermediate
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\resources.resfiles
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\resources.resfiles.intermediate
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\pri.resfiles
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\pri.resfiles.intermediate
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\qualifiers.txt
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\qualifiers.txt.intermediate
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\MultipleQualifiersPerDimensionFound.txt
+C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Release\ProjectArchitectures.txt

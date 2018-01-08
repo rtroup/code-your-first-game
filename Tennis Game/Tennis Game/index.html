@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tennis_Game</title>
+    <link href="css/default.css" rel="stylesheet" />
+</head>
+<body>
+    <div></div>
+    <!-- <script src="js/main.js"></script> -->
+    <!-- Create a HTML canvas for the game -->
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+</body>
+<script>
+    var canvas;
+    var canvasContext;
+    var ballX = 50;
+    var ballY = 50;
+    var ballRadius = 5;
+    var ballXVelocity = 10;
+    var ballYVelocity = 10;
+
+    const LEFTPADDLEWIDTH = 10;
+    var leftPaddleHeight = 100;
+    var leftPaddleVelocity = 0;
+    var leftPaddleX = 0;
+    var leftPaddleY = 0;
+    const RIGHTPADDLEWIDTH = 10;
+    var rightPaddleHeight = 100;
+    var rightPaddleVelocity = 0;
+    var rightPaddleY = 0;
+
+    var computerAISpeed = 6;
+    var playerScore = 0;
+    var computerScore = 0;
+    const MAX_SCORE = 3;
+
+    var showingWinScreen = false;
+
+    //Run function when window has finished loading
+    window.onload = function () {
+        console.log("Hello World!");
+        canvas = document.getElementById('gameCanvas');
+        canvasContext = canvas.getContext('2d');
+
+        /* Set up a timer that calls the draw function a # 
+           of times each sec
+         */
+        var framesPerSecond = 30;
+        //setInterval(draw, 1000 / framesPerSecond);
+        /* Use inline function to call multiple functions
+         * This has no name and cannot be called from anywhere else
+         */
+        setInterval(function() {
+            move();
+            draw();
+        }, 1000 / framesPerSecond);
+
+        canvas.addEventListener('mousedown', handleMouseClick);
+
+        canvas.addEventListener('mousemove',
+            function (evt) {
+                var mousePos = calculateMousePos(evt);
+                leftPaddleY = mousePos.y - (leftPaddleHeight / 2);
+                //rightPaddleY = mousePos.y - (leftPaddleHeight / 2);
+            });
+    }
+
+    function handleMouseClick(evt) {
+        if (showingWinScreen) {
+            playerScore = 0;
+            computerScore = 0;
+            showingWinScreen = false;
+        }
+    }
+
+    /*
+     * Function called whenever mouse is moved. Accepts the
+     * mouses position as an evt object.
+     * rect: The canvas' bounding rectangle
+     * root: Handle of the document
+     */
+    function calculateMousePos(evt) {
+        var rect = canvas.getBoundingClientRect();
+        var root = document.documentElement;
+        var mouseX = evt.clientX - rect.left - root.scrollLeft;
+        var mouseY = evt.clientY - rect.top - root.scrollTop;
+        /* Returns an object literal; it is only 1 value */
+        return {
+            x: mouseX,
+            y: mouseY
+        };
+    }
+
+    function draw() {
+        /* Log coordinates of ball for testing */
+        //console.log(ballX);
+        //console.log(ballY);
+
+        /* Draw the game canvas */
+        drawRect(0, 0, canvas.width, canvas.height, 'black');
+
+        /* Winning screen */
+        if (showingWinScreen) {
+            canvasContext.fillStyle = 'white';
+            if (playerScore >= MAX_SCORE) {
+                canvasContext.fillText("You Win!", 350, 200);
+            } else if (computerScore >= MAX_SCORE) {
+                canvasContext.fillText("Computer Wins!", 350, 200);
+            }
+            canvasContext.fillText("Click to continue.", 350, 500);
+        }
+        
+        /* Centered box
+         * Set the top, left corner for the middle of the canvas
+         * Subtract half of the boxes width from the width position
+         * Subtract half of the boxes height from the height position
+         */
+        //canvasContext.fillStyle = 'red';
+        //canvasContext.fillRect(canvas.width / 2 - 150, canvas.height / 2 - 100, 300, 200);
+        //drawRect(canvas.width / 2 - 150, canvas.height / 2 - 100, 300, 200, 'red');
+
+        /* Draw the ball */
+        drawCircle(ballX, ballY, ballRadius, 'white');
+
+        /* Draw the net */
+        drawNet()
+
+        /* Draw left paddle */
+        drawRect(leftPaddleX, leftPaddleY, LEFTPADDLEWIDTH, leftPaddleHeight, 'white');
+
+        /* Draw right paddle */
+        drawRect(canvas.width - RIGHTPADDLEWIDTH, rightPaddleY, RIGHTPADDLEWIDTH, rightPaddleHeight, 'white');
+
+        /* Add text for scoring */
+        canvasContext.fillText(playerScore, 100, 100);
+        canvasContext.fillText(computerScore, canvas.width - 100, 100);
+    }
+
+    /**
+     * Controls the computer AI for the right paddle.
+     * paddleBuffer: The paddle will only move if the ball is greater
+     * than paddleBuffer pixels above or below the current position
+     * of the paddle.
+     */
+    function computerAI() {
+        var rightPaddleCenter = rightPaddleY + (rightPaddleHeight / 2);
+        var paddleBuffer = 30;
+        if (rightPaddleCenter < ballY - paddleBuffer) {
+            rightPaddleY += computerAISpeed;
+        } else if (rightPaddleCenter > ballY + paddleBuffer) {
+            rightPaddleY -= computerAISpeed;
+        }
+    }
+
+    /**
+     * Controls the movement of the ball.
+     */
+    function move() {
+        if (showingWinScreen) {
+            return;
+        }
+
+        computerAI();
+
+        /* Move the ball */
+        ballX += ballXVelocity;
+        ballY += ballYVelocity;
+        /* If the ball moves too far down, change the direction */
+        if (ballY > canvas.height) {
+            ballYVelocity = -ballYVelocity;
+        }
+        /* If the ball moves too far up, change the direction */
+        if (ballY < 0) {
+            ballYVelocity = -ballYVelocity;
+        }
+        /* If the ball moves too far to the left, change the direction */
+        if (ballX < 0) {
+            if (ballY > leftPaddleY &&
+                ballY < leftPaddleY + leftPaddleHeight) {
+                ballXVelocity = -ballXVelocity;
+                /* Calculate 2D collision response */
+                var deltaY = ballY - (leftPaddleY + leftPaddleHeight / 2);
+                ballYVelocity = deltaY * 0.33;
+            } else {
+                /* Updating score must occur before ball reset */
+                computerScore++;
+                ballReset();
+            }
+            
+        }
+        /* If the ball moves too far to the right, change the direction */
+        if (ballX > canvas.width - ballRadius) {
+            if (ballY > rightPaddleY &&
+                ballY < rightPaddleY + rightPaddleHeight) {
+                ballXVelocity = -ballXVelocity;
+                /* Calculate 2D collision response */
+                var deltaY = ballY - (rightPaddleY + rightPaddleHeight / 2);
+                ballYVelocity = deltaY * 0.33;
+            } else {
+                /* Updating score must occur before ball reset */
+                playerScore++;
+                ballReset();
+            }
+        }
+    }
+
+    /**
+     * Draw the net
+     */
+    function drawNet() {
+        for (var i = 0; i < canvas.height; i += 40) {
+            /* 2 pixels high, 20 pixels long */
+            drawRect(canvas.width / 2 - 1, i, 2, 20, 'white');
+        }
+    }
+
+    /**
+     * Draw a rectangle shape on the canvas
+     * leftX: X-coordinate for the top left corner of the rectangle
+     * topY: Y-coordinate for top left corner of the rectangle
+     * width: width of the rectangle in pixels
+     * height: height of the rectangle in pixels
+     * drawColor: Fill color of the rectangle
+     */
+    function drawRect(leftX, topY, width, height, drawColor) {
+        canvasContext.fillStyle = drawColor;
+        canvasContext.fillRect(leftX, topY, width, height);
+    }
+
+    /**
+     * Draw a circle shape on the canvas
+     * centerX: X-coordinate for the center of the circle
+     * centerY: Y-coordinate for center of the circle
+     * radius: radius of the circle
+     * drawColor: Fill color of the circle
+     */
+    function drawCircle(centerX, centerY, radius, drawColor) {
+        canvasContext.fillStyle = drawColor;
+        canvasContext.beginPath();
+        canvasContext.arc(centerX, centerY, radius, 0, Math.PI * 2, true);
+        canvasContext.fill();
+    }
+
+    /**
+     * Reset the position of the ball when a player loses the round.
+     * A player loses the round when the ball moves pass their paddle.
+     * The function checks the position the position of the ball to
+     * determine if it is has moved outside of the game canvas.
+     * If a player loses, the direction of the ball is changed and the
+     * ball is moved to the center of the screen.
+     */
+    function ballReset() {
+        if (playerScore >= MAX_SCORE || computerScore >= MAX_SCORE) {
+            showingWinScreen = true;
+        }
+        ballXVelocity = -ballXVelocity;
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+    }
+
+</script>
+</html>

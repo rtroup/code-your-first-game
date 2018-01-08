@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DESKTOP-FBC2AC0</Machine>
+    <WindowsUser>sltroup</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>87ce2bad-a950-4a79-955c-c0a9e26324c7</PackageIdentityName>
+    <PackageIdentityPublisher>CN=sltroup</PackageIdentityPublisher>
+    <IntermediateOutputPath>C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bld\Debug\</IntermediateOutputPath>
+    <RemoteDeploymentType>
+    </RemoteDeploymentType>
+    <PackageRegistrationPath>
+    </PackageRegistrationPath>
+    <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+    <WindowsSdkPath>
+    </WindowsSdkPath>
+    <LayoutDir>C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bin\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>859387D3E3E6899A16BEA2F8B013F098999E37F64C8CB320E460277B155D44C8</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>87ce2bad-a950-4a79-955c-c0a9e26324c7_1.0.0.0_neutral__pz1v72p6vn50e</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>87ce2bad-a950-4a79-955c-c0a9e26324c7_pz1v72p6vn50e!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>87ce2bad-a950-4a79-955c-c0a9e26324c7</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=sltroup</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-01-07T08:42:06.688</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\index.html">
+      <PackagePath>index.html</PackagePath>
+      <Modified>2018-01-07T08:54:32.793</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\images\LockScreenLogo.scale-200.png">
+      <PackagePath>images\LockScreenLogo.scale-200.png</PackagePath>
+      <Modified>2018-01-07T05:22:17.739</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\images\SplashScreen.scale-200.png">
+      <PackagePath>images\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-01-07T05:22:17.739</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\images\Square150x150Logo.scale-200.png">
+      <PackagePath>images\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-01-07T05:22:17.739</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\images\Square44x44Logo.scale-200.png">
+      <PackagePath>images\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-01-07T05:22:17.739</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\images\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>images\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-01-07T05:22:17.739</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\images\StoreLogo.png">
+      <PackagePath>images\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-01-07T05:22:17.739</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\images\Wide310x150Logo.scale-200.png">
+      <PackagePath>images\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-01-07T05:22:17.739</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\js\main.js">
+      <PackagePath>js\main.js</PackagePath>
+      <Modified>2018-01-07T08:38:47.375</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+      <Modified>2018-01-07T08:38:47.280</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\sltro\Documents\GitHub\code-your-first-game\Tennis Game\Tennis Game\bin\Debug\ReverseMap\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-01-07T08:42:06.470</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
