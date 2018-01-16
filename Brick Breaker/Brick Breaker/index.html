@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <title>Brick_Breaker</title>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script>
+        var canvas;
+        var canvasContext;
+        var ballX = 75;
+        var ballSpeedX = 5;
+        var ballY = 75;
+        var ballSpeedY = 7;
+        const PADDLE_WIDTH = 100;
+        const PADDLE_THICKNESS = 10;
+        const PADDLE_DIST_FROM_EDGE = 60;
+        var paddleX = 400;
+
+        function updateMousePos(evt) {
+            var rect = canvas.getBoundingClientRect();
+            var root = document.documentElement;
+
+            var mouseX = evt.clientX - rect.left - root.scrollLeft;
+            //var mouseY = evt.clentY - rect.top - root.scrollTop;
+            paddleX = mouseX - PADDLE_WIDTH/2;
+        }
+
+        window.onload = function () {
+            var framesPerSecond = 30;
+
+            canvas = document.getElementById('gameCanvas');
+            canvasContext = canvas.getContext('2d');
+
+            setInterval(updateAll, 1000 / framesPerSecond);  
+
+            canvas.addEventListener('mousemove', updateMousePos);
+        }
+
+        function updateAll() {
+            moveAll();
+            drawAll();            
+        }
+
+        function ballReset() {
+            ballX = canvas.width / 2;
+            ballY = canvas.height / 2;
+        }
+
+        function moveAll() {
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+
+            /* Right side of the screen */
+            if (ballX > canvas.width) {
+                ballSpeedX *= -1;
+            }
+            /* Left side of the canvas */
+            if (ballX < 0) {
+                ballSpeedX *= -1;
+            }
+            /* Bottom of the canvas */
+            if (ballY > canvas.height) {
+                //ballSpeedY *= -1;
+                ballReset();
+            }
+            if (ballY < 0) {
+                ballSpeedY *= -1;              
+            }
+
+            /* Check for intersection between ball and paddle */
+            var paddleTopEdgeY = canvas.height - PADDLE_DIST_FROM_EDGE;
+            var paddleBottomEdgeY = paddleTopEdgeY + PADDLE_THICKNESS;
+            var paddleLeftEdgeX = paddleX;
+            var paddleRightEdgeX = paddleLeftEdgeX + PADDLE_WIDTH;
+            if (ballY > paddleTopEdgeY && // below the top of paddle
+                ballY < paddleBottomEdgeY && // above bottom of paddle
+                ballX > paddleLeftEdgeX && // right of the left side of paddle
+                ballX < paddleRightEdgeX) { // left of the left side of paddle
+                ballSpeedY *= -1;
+
+                var centerofPaddleX = paddleX + PADDLE_WIDTH / 2;
+                var ballDistfromPaddleCenterX = ballX - centerofPaddleX;
+                ballSpeedX = ballDistfromPaddleCenterX * 0.35;
+            }
+        }
+
+        function drawAll() {
+            /* Draw the background canvas */
+            colorRect(0, 0, canvas.width, canvas.height, 'black');
+
+            /* Draw the ball */
+            colorCircle(ballX, ballY, 10, 'white');
+
+            /* Draw the paddle */
+            colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
+        }
+
+        function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
+            canvasContext.fillStyle = fillColor;
+            canvasContext.fillRect(topLeftX, topLeftY, boxWidth, boxHeight);
+        }
+
+        function colorCircle(centerX, centerY, radius, fillColor) {
+            canvasContext.fillStyle = fillColor;
+            canvasContext.beginPath();
+            canvasContext.arc(centerX,centerY, radius, 0,Math.PI * 2, true);
+            canvasContext.fill();
+        }
+    </script>
+</body>
+</html>
